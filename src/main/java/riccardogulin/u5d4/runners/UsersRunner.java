@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import riccardogulin.u5d4.entities.User;
+import riccardogulin.u5d4.exceptions.NotFoundException;
 import riccardogulin.u5d4.exceptions.ValidationException;
 import riccardogulin.u5d4.repositories.UsersRepository;
 import riccardogulin.u5d4.services.UsersService;
@@ -43,8 +44,15 @@ public class UsersRunner implements CommandLineRunner {
 			log.error(ex.getMessage());
 		}*/
 
-		usersService.findAll().forEach(System.out::println);
+		try {
+			usersService.findByIdAndDelete(104);
+		} catch (NotFoundException ex) {
+			log.error(ex.getMessage());
+		}
 
+		// usersService.findAll().forEach(System.out::println);
+		// usersService.filterByNameStartsWith("a").forEach(System.out::println);
+		usersService.filterByAge(20).forEach(System.out::println);
 
 	}
 }
