@@ -52,7 +52,7 @@ public class UsersRunner implements CommandLineRunner {
 
 		// usersService.findAll().forEach(System.out::println);
 		// usersService.filterByNameStartsWith("a").forEach(System.out::println);
-		usersService.filterByAge(20).forEach(System.out::println);
+		usersService.filterSoloMaggiorenni().forEach(System.out::println);
 
 	}
 }

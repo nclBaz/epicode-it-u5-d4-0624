@@ -1,6 +1,7 @@
 package riccardogulin.u5d4.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import riccardogulin.u5d4.entities.User;
 
@@ -30,4 +31,14 @@ public interface UsersRepository extends JpaRepository<User, Long> {
 	// Link alla documentazione Derived Queries
 	// https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
 
+	// ******************************************** JPQL QUERIES ********************************
+	@Query("SELECT u FROM User u WHERE u.age >= 18")
+	List<User> filterBySoloMaggiorenni();
+
+	@Query("SELECT u FROM User u WHERE u.age >= :age")
+	List<User> filterByAge(int age);
+
+	// ********************************************* NATIVE QUERIES *****************************
+	@Query(value = "SELECT * FROM users WHERE age >= 18", nativeQuery = true)
+	List<User> filterBySoloMaggiorenniNative();
 }

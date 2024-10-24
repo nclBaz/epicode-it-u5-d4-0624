@@ -97,4 +97,8 @@ public class UsersService {
 	public List<User> filterByAge(int age) {
 		return usersRepository.findByAgeLessThan(age);
 	}
+
+	public List<User> filterSoloMaggiorenni(){
+		return usersRepository.filterBySoloMaggiorenni();
+	}
 }
